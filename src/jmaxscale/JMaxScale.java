@@ -7,6 +7,7 @@ package jmaxscale;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -22,7 +23,7 @@ public class JMaxScale {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws UnsupportedLookAndFeelException{
-        
+        ImageIcon icon = new ImageIcon("/Users/Nero/NetBeansProjects/JMaxScale/src/lib/icon.png");
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
@@ -40,10 +41,10 @@ public class JMaxScale {
                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
                 double width = screenSize.getWidth();
                 double height = screenSize.getHeight();
-                JFrame frame = new JFrame("MaxScale Admin");
+                JFrame frame = new JFrame("JMaxScale");
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 //frame.setResizable(false);
-
+                frame.setIconImage(icon.getImage());
                 frame.getContentPane().add(new ui());
                 frame.pack();
                 frame.setVisible(true);
