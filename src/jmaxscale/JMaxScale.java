@@ -23,7 +23,7 @@ public class JMaxScale {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws UnsupportedLookAndFeelException{
-        ImageIcon icon = new ImageIcon("/Users/Nero/NetBeansProjects/JMaxScale/src/lib/icon.png");
+        ImageIcon icon = new ImageIcon("lib/icon.png");
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
