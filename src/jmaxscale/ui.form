@@ -35,7 +35,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="runButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="clearButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -74,7 +74,7 @@
                   <Component id="runButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comList" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="clearButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="93" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="376" max="-2" attributes="0"/>
@@ -196,12 +196,12 @@
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="clearButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

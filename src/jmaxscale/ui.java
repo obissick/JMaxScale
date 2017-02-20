@@ -51,7 +51,7 @@ public class ui extends javax.swing.JPanel {
         comLabel = new javax.swing.JLabel();
         comList = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        clearButton = new javax.swing.JButton();
 
         host.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         host.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -94,10 +94,10 @@ public class ui extends javax.swing.JPanel {
 
         comList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "list clients", "list dcbs", "list filters", "list listeners", "list modules", "list monitors", "list services", "list servers", "list sessions", "list threads", "show dcbs", "show dcb", "show dbusers", "show epoll", "show event", "show eventstats", "show feedbackreport", "show filter", "show filters", "show modules", "show monitor", "show monitors", "show server", "show servers", "show serversjson", "show services", "show service", "show session", "show sessions", "show tasks", "show threads", "show users" }));
 
-        jButton1.setText("Clear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                clearButtonActionPerformed(evt);
             }
         });
 
@@ -123,7 +123,7 @@ public class ui extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(runButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(clearButton)
                         .addGap(6, 6, 6)))
                 .addGap(18, 18, 18)
                 .addComponent(passwordLabel)
@@ -155,7 +155,7 @@ public class ui extends javax.swing.JPanel {
                     .addComponent(runButton)
                     .addComponent(comLabel)
                     .addComponent(comList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(clearButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -188,10 +188,10 @@ public class ui extends javax.swing.JPanel {
         
     }//GEN-LAST:event_runButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
         
         result.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_clearButtonActionPerformed
 
     private void runCom(String host, String user, String password, String command1) {
         try{
@@ -235,11 +235,11 @@ public class ui extends javax.swing.JPanel {
 	}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton clearButton;
     private javax.swing.JLabel comLabel;
     private javax.swing.JComboBox<String> comList;
     private javax.swing.JTextField host;
     private javax.swing.JLabel hostLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField password;
