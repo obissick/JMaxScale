@@ -54,7 +54,7 @@ public class ui extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         clearButton = new javax.swing.JButton();
         configButton = new javax.swing.JToggleButton();
-        jLabel1 = new javax.swing.JLabel();
+        detailLabel = new javax.swing.JLabel();
 
         host.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         host.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -111,7 +111,7 @@ public class ui extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Host Details");
+        detailLabel.setText("Host Details");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -155,7 +155,7 @@ public class ui extends javax.swing.JPanel {
                                     .addComponent(configButton)))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1)))
+                                .addComponent(detailLabel)))
                         .addGap(0, 292, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -163,7 +163,7 @@ public class ui extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(detailLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -283,9 +283,9 @@ public class ui extends javax.swing.JPanel {
     private javax.swing.JLabel comLabel;
     private javax.swing.JComboBox<String> comList;
     private javax.swing.JToggleButton configButton;
+    private javax.swing.JLabel detailLabel;
     private javax.swing.JTextField host;
     private javax.swing.JLabel hostLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField password;
