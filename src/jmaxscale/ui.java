@@ -206,7 +206,7 @@ public class ui extends javax.swing.JPanel {
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
-        String cnfFile = "/etc/maxscale.cnf"
+        String cnfFile = "/etc/maxscale.cnf";
         Thread thread = new Thread(
                 () -> {
                     runCom(hostString,user,passwordString,"cat "+cnfFile);
