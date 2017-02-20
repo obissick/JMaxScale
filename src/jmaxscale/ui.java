@@ -181,7 +181,6 @@ public class ui extends javax.swing.JPanel {
         if(isIP.validate(host.getText())){
             hostString = host.getText();
             host.setBackground(Color.green);
-            
         }else{
             host.setBackground(Color.red);
         }
