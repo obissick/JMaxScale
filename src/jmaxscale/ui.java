@@ -52,6 +52,7 @@ public class ui extends javax.swing.JPanel {
         comList = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         clearButton = new javax.swing.JButton();
+        configButton = new javax.swing.JToggleButton();
 
         host.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         host.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -101,6 +102,13 @@ public class ui extends javax.swing.JPanel {
             }
         });
 
+        configButton.setText("Show Config");
+        configButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                configButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,9 +134,12 @@ public class ui extends javax.swing.JPanel {
                         .addComponent(clearButton)
                         .addGap(6, 6, 6)))
                 .addGap(18, 18, 18)
-                .addComponent(passwordLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(passwordLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(configButton))
                 .addContainerGap(304, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -155,7 +166,8 @@ public class ui extends javax.swing.JPanel {
                     .addComponent(runButton)
                     .addComponent(comLabel)
                     .addComponent(comList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearButton))
+                    .addComponent(clearButton)
+                    .addComponent(configButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -192,6 +204,15 @@ public class ui extends javax.swing.JPanel {
         
         result.setText("");
     }//GEN-LAST:event_clearButtonActionPerformed
+
+    private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
+        String cnfFile = "/etc/maxscale.cnf"
+        Thread thread = new Thread(
+                () -> {
+                    runCom(hostString,user,passwordString,"cat "+cnfFile);
+        });
+        thread.start();
+    }//GEN-LAST:event_configButtonActionPerformed
 
     private void runCom(String host, String user, String password, String command1) {
         try{
@@ -238,6 +259,7 @@ public class ui extends javax.swing.JPanel {
     private javax.swing.JButton clearButton;
     private javax.swing.JLabel comLabel;
     private javax.swing.JComboBox<String> comList;
+    private javax.swing.JToggleButton configButton;
     private javax.swing.JTextField host;
     private javax.swing.JLabel hostLabel;
     private javax.swing.JScrollPane jScrollPane1;

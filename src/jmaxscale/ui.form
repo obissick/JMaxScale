@@ -40,9 +40,14 @@
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="password" min="-2" pref="89" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="password" min="-2" pref="89" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="configButton" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="304" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -75,6 +80,7 @@
                   <Component id="comLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comList" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="clearButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="configButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="93" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="376" max="-2" attributes="0"/>
@@ -202,6 +208,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="configButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Show Config"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="configButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
