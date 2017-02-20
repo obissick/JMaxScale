@@ -9,6 +9,7 @@ import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
+import java.awt.Color;
 import java.io.InputStream;
 
 /**
@@ -176,7 +177,14 @@ public class ui extends javax.swing.JPanel {
 
     private void hostFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hostFocusLost
         
-        hostString = host.getText();
+        IPAddressValidator isIP = new IPAddressValidator();
+        if(isIP.validate(host.getText())){
+            hostString = host.getText();
+            host.setBackground(Color.green);
+            
+        }else{
+            host.setBackground(Color.red);
+        }
     }//GEN-LAST:event_hostFocusLost
 
     private void userNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameFocusLost
