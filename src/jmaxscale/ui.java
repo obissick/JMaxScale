@@ -55,6 +55,7 @@ public class ui extends javax.swing.JPanel {
         clearButton = new javax.swing.JButton();
         configButton = new javax.swing.JToggleButton();
         detailLabel = new javax.swing.JLabel();
+        addCommand = new javax.swing.JTextField();
 
         host.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         host.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -113,6 +114,12 @@ public class ui extends javax.swing.JPanel {
 
         detailLabel.setText("Host Details");
 
+        addCommand.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                addCommandFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,33 +137,34 @@ public class ui extends javax.swing.JPanel {
                                 .addGap(33, 33, 33)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(hostLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(host, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(userLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(comLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(4, 4, 4)
                                         .addComponent(comList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(runButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(clearButton)
-                                        .addGap(6, 6, 6)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(passwordLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(configButton)))
+                                        .addComponent(addCommand)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(runButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(clearButton)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(configButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(hostLabel)
+                                        .addGap(2, 2, 2)
+                                        .addComponent(host, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(userLabel)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(passwordLabel)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(41, 41, 41))))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(detailLabel)))
-                        .addGap(0, 292, Short.MAX_VALUE)))
+                        .addGap(0, 290, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -180,7 +188,8 @@ public class ui extends javax.swing.JPanel {
                     .addComponent(comLabel)
                     .addComponent(comList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearButton)
-                    .addComponent(configButton))
+                    .addComponent(configButton)
+                    .addComponent(addCommand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
@@ -217,7 +226,7 @@ public class ui extends javax.swing.JPanel {
         int itemIndex = comList.getSelectedIndex();
         Thread thread = new Thread(
                 () -> {
-                    runCom(hostString,user,passwordString,"maxadmin -pmariadb " + comList.getItemAt(itemIndex));
+                    runCom(hostString,user,passwordString,"maxadmin -pmariadb " + comList.getItemAt(itemIndex) + command);
         });
         thread.start();
         
@@ -236,6 +245,10 @@ public class ui extends javax.swing.JPanel {
         });
         thread.start();
     }//GEN-LAST:event_configButtonActionPerformed
+
+    private void addCommandFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addCommandFocusLost
+        command = " " + addCommand.getText();
+    }//GEN-LAST:event_addCommandFocusLost
 
     private void runCom(String host, String user, String password, String command1) {
         try{
@@ -283,6 +296,7 @@ public class ui extends javax.swing.JPanel {
 	}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField addCommand;
     private javax.swing.JButton clearButton;
     private javax.swing.JLabel comLabel;
     private javax.swing.JComboBox<String> comList;
