@@ -29,7 +29,7 @@ public class ui extends javax.swing.JPanel {
     private String hostString;
     private String user;
     private String passwordString;
-    private String command;
+    private String command = " ";
 
     /**
      * This method is called from within the constructor to initialize the form.
