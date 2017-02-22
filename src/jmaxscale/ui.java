@@ -267,7 +267,11 @@ public class ui extends javax.swing.JPanel {
 	            //result.append("exit-status: "+channel.getExitStatus() + "\n");
 	            break;
 	          }
-	          try{Thread.sleep(1000);}catch(Exception ee){}
+	          try{
+                      Thread.sleep(1000);
+                  }catch(Exception ee){
+                  
+                  }
 	        }
 	        channel.disconnect();
 	        session.disconnect();
