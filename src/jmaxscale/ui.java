@@ -96,6 +96,7 @@ public class ui extends javax.swing.JPanel {
 
         comLabel.setText("Command:");
 
+        comList.setEditable(true);
         comList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "list clients", "list dcbs", "list filters", "list listeners", "list modules", "list monitors", "list services", "list servers", "list sessions", "list threads", "show dcbs", "show dcb", "show dbusers", "show epoll", "show event", "show eventstats", "show feedbackreport", "show filter", "show filters", "show modules", "show monitor", "show monitors", "show server", "show servers", "show serversjson", "show services", "show service", "show session", "show sessions", "show tasks", "show threads", "show users" }));
 
         clearButton.setText("Clear");
