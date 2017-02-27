@@ -30,6 +30,8 @@ public class ui extends javax.swing.JPanel {
     private String user;
     private String passwordString;
     private String command = " ";
+    private String mxUser = "";
+    private String mxPassword = "mariadb";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,7 +57,8 @@ public class ui extends javax.swing.JPanel {
         clearButton = new javax.swing.JButton();
         configButton = new javax.swing.JToggleButton();
         detailLabel = new javax.swing.JLabel();
-        addCommand = new javax.swing.JTextField();
+        maxUser = new javax.swing.JTextField();
+        maxPassword = new javax.swing.JTextField();
 
         host.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         host.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -115,9 +118,26 @@ public class ui extends javax.swing.JPanel {
 
         detailLabel.setText("Host Details");
 
-        addCommand.addFocusListener(new java.awt.event.FocusAdapter() {
+        maxUser.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        maxUser.setText("username");
+        maxUser.setToolTipText("");
+        maxUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                maxUserFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                addCommandFocusLost(evt);
+                maxUserFocusLost(evt);
+            }
+        });
+
+        maxPassword.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        maxPassword.setText("password");
+        maxPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                maxPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                maxPasswordFocusLost(evt);
             }
         });
 
@@ -136,19 +156,13 @@ public class ui extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(comLabel)
                                         .addGap(4, 4, 4)
                                         .addComponent(comList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(addCommand)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(runButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(clearButton)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(configButton))
+                                        .addComponent(maxUser))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(hostLabel)
                                         .addGap(2, 2, 2)
@@ -156,16 +170,25 @@ public class ui extends javax.swing.JPanel {
                                         .addGap(28, 28, 28)
                                         .addComponent(userLabel)
                                         .addGap(6, 6, 6)
-                                        .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(passwordLabel)
                                         .addGap(3, 3, 3)
-                                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(41, 41, 41))))
+                                        .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(maxPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(runButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(clearButton)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(configButton))))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(detailLabel)))
-                        .addGap(0, 290, Short.MAX_VALUE)))
+                        .addGap(0, 105, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -190,7 +213,8 @@ public class ui extends javax.swing.JPanel {
                     .addComponent(comList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clearButton)
                     .addComponent(configButton)
-                    .addComponent(addCommand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(maxUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
@@ -225,12 +249,19 @@ public class ui extends javax.swing.JPanel {
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
         
         int itemIndex = comList.getSelectedIndex();
-        Thread thread = new Thread(
+        if(maxUser.getText().equals("username") && maxPassword.getText().equals("password") || maxUser.getText().isEmpty() && maxPassword.getText().isEmpty()){
+            Thread thread = new Thread(
                 () -> {
-                    runCom(hostString,user,passwordString,"maxadmin -pmariadb " + comList.getItemAt(itemIndex) + command);
-        });
-        thread.start();
-        
+                    runCom(hostString,user,passwordString,"maxadmin -pmariadb " + comList.getItemAt(itemIndex));
+            });
+            thread.start();
+        }else{
+            Thread thread = new Thread(
+                    () -> {
+                        runCom(hostString,user,passwordString,"maxadmin -u " + mxUser + " -p" +mxPassword + comList.getItemAt(itemIndex));
+            });
+            thread.start();
+        }
     }//GEN-LAST:event_runButtonActionPerformed
 
     private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
@@ -247,9 +278,21 @@ public class ui extends javax.swing.JPanel {
         thread.start();
     }//GEN-LAST:event_configButtonActionPerformed
 
-    private void addCommandFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_addCommandFocusLost
-        command = " " + addCommand.getText();
-    }//GEN-LAST:event_addCommandFocusLost
+    private void maxUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxUserFocusLost
+        mxUser = maxUser.getText();
+    }//GEN-LAST:event_maxUserFocusLost
+
+    private void maxUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxUserFocusGained
+        maxUser.setText("");
+    }//GEN-LAST:event_maxUserFocusGained
+
+    private void maxPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxPasswordFocusGained
+        maxPassword.setText("");
+    }//GEN-LAST:event_maxPasswordFocusGained
+
+    private void maxPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxPasswordFocusLost
+        mxPassword = maxPassword.getText();
+    }//GEN-LAST:event_maxPasswordFocusLost
 
     private void runCom(String host, String user, String password, String command1) {
         try{
@@ -297,7 +340,6 @@ public class ui extends javax.swing.JPanel {
 	}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField addCommand;
     private javax.swing.JButton clearButton;
     private javax.swing.JLabel comLabel;
     private javax.swing.JComboBox<String> comList;
@@ -307,6 +349,8 @@ public class ui extends javax.swing.JPanel {
     private javax.swing.JLabel hostLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField maxPassword;
+    private javax.swing.JTextField maxUser;
     private javax.swing.JTextField password;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextArea result;
