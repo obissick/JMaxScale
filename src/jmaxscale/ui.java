@@ -279,7 +279,11 @@ public class ui extends javax.swing.JPanel {
     }//GEN-LAST:event_configButtonActionPerformed
 
     private void maxUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxUserFocusLost
-        mxUser = maxUser.getText();
+        if(maxUser.getText().isEmpty()){
+            maxUser.setText("username");
+        }else{
+            mxUser = maxUser.getText();
+        }
     }//GEN-LAST:event_maxUserFocusLost
 
     private void maxUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxUserFocusGained
@@ -291,7 +295,11 @@ public class ui extends javax.swing.JPanel {
     }//GEN-LAST:event_maxPasswordFocusGained
 
     private void maxPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxPasswordFocusLost
-        mxPassword = maxPassword.getText();
+        if(maxPassword.getText().isEmpty()){
+            maxPassword.setText("password");
+        }else{
+            mxPassword = maxPassword.getText();
+        }
     }//GEN-LAST:event_maxPasswordFocusLost
 
     private void runCom(String host, String user, String password, String command1) {
