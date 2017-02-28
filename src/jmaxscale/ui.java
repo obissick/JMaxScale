@@ -252,13 +252,13 @@ public class ui extends javax.swing.JPanel {
         if(maxUser.getText().equals("username") && maxPassword.getText().equals("password") || maxUser.getText().isEmpty() && maxPassword.getText().isEmpty()){
             Thread thread = new Thread(
                 () -> {
-                    runCom(hostString,user,passwordString,"maxadmin -pmariadb " + comList.getItemAt(itemIndex));
+                    runCom(hostString,user,passwordString,"maxadmin -pmariadb " + comList.getEditor().toString());
             });
             thread.start();
         }else{
             Thread thread = new Thread(
                     () -> {
-                        runCom(hostString,user,passwordString,"maxadmin -u " + mxUser + " -p" +mxPassword + comList.getItemAt(itemIndex));
+                        runCom(hostString,user,passwordString,"maxadmin -u " + mxUser + " -p" +mxPassword + comList.getEditor().toString());
             });
             thread.start();
         }
