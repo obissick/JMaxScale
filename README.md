@@ -4,4 +4,4 @@ UI for running MaxScale commands.
 
 # Requirements
   - Java version >= 8
-  -MaxScale version 1.x
+  - MaxScale version 1.x
