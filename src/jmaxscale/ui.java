@@ -60,6 +60,7 @@ public class ui extends javax.swing.JPanel {
         maxUser = new javax.swing.JTextField();
         maxPassword = new javax.swing.JTextField();
 
+        host.setToolTipText("Enter credentials for server running MaxScale.");
         host.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         host.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -101,6 +102,7 @@ public class ui extends javax.swing.JPanel {
 
         comList.setEditable(true);
         comList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "list clients", "list dcbs", "list filters", "list listeners", "list modules", "list monitors", "list services", "list servers", "list sessions", "list threads", "show dcbs", "show dcb", "show dbusers", "show epoll", "show event", "show eventstats", "show feedbackreport", "show filter", "show filters", "show modules", "show monitor", "show monitors", "show server", "show servers", "show serversjson", "show services", "show service", "show session", "show sessions", "show tasks", "show threads", "show users" }));
+        comList.setToolTipText("MaxScale command to run.(Enter other options if needed.)");
 
         clearButton.setText("Clear");
         clearButton.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +122,7 @@ public class ui extends javax.swing.JPanel {
 
         maxUser.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
         maxUser.setText("username");
-        maxUser.setToolTipText("");
+        maxUser.setToolTipText("Enter MaxScale username.");
         maxUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 maxUserFocusGained(evt);
@@ -132,6 +134,7 @@ public class ui extends javax.swing.JPanel {
 
         maxPassword.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
         maxPassword.setText("password");
+        maxPassword.setToolTipText("Enter MaxScale password.");
         maxPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 maxPasswordFocusGained(evt);
@@ -171,7 +174,7 @@ public class ui extends javax.swing.JPanel {
                                         .addComponent(userLabel)
                                         .addGap(6, 6, 6)
                                         .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(passwordLabel)
@@ -188,7 +191,7 @@ public class ui extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(detailLabel)))
-                        .addGap(0, 105, Short.MAX_VALUE)))
+                        .addGap(0, 110, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -287,7 +290,7 @@ public class ui extends javax.swing.JPanel {
     }//GEN-LAST:event_maxUserFocusLost
 
     private void maxUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxUserFocusGained
-        maxUser.setText("");
+         maxUser.setText("");
     }//GEN-LAST:event_maxUserFocusGained
 
     private void maxPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxPasswordFocusGained
@@ -302,7 +305,7 @@ public class ui extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_maxPasswordFocusLost
 
-    private void runCom(String host, String user, String password, String command1) {
+    private void runCom(String host, String user, String password, String command) {
         try{
 	    	
 	    	java.util.Properties config = new java.util.Properties(); 
@@ -313,9 +316,9 @@ public class ui extends javax.swing.JPanel {
 	    	session.setConfig(config);
 	    	session.connect();
 	    	result.append("Running command..."+"\n");
-	    	
+	    
 	    	Channel channel=session.openChannel("exec");
-	        ((ChannelExec)channel).setCommand(command1);
+	        ((ChannelExec)channel).setCommand(command);
 	        channel.setInputStream(null);
 	        ((ChannelExec)channel).setErrStream(System.err);
 	        
