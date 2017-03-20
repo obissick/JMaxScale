@@ -32,6 +32,9 @@ public class ui extends javax.swing.JPanel {
     private String command = " ";
     private String mxUser = "";
     private String mxPassword = "mariadb";
+    private String maxCommand = "maxadmin ";
+    private String maxVersion = "";
+    private boolean versionChecked =false;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -247,17 +250,35 @@ public class ui extends javax.swing.JPanel {
     private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
         
         passwordString = password.getText();
+        maxVersion = "";
+        
+        if(!versionChecked){
+            Thread thread = new Thread(
+                () -> {
+                    runCom(hostString,user,passwordString,"maxscale -v");
+            });
+            thread.start();
+        }
     }//GEN-LAST:event_passwordFocusLost
 
     private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
         
         int itemIndex = comList.getSelectedIndex();
         if(maxUser.getText().equals("username") && maxPassword.getText().equals("password") || maxUser.getText().isEmpty() && maxPassword.getText().isEmpty()){
-            Thread thread = new Thread(
-                () -> {
-                    runCom(hostString,user,passwordString,"maxadmin -pmariadb " + comList.getEditor().getItem().toString());
-            });
-            thread.start();
+            if(maxVersion.contains("MaxScale 2.")){
+                System.out.println(maxVersion);
+                Thread thread = new Thread(
+                    () -> {
+                        runCom(hostString,user,passwordString,maxCommand + comList.getEditor().getItem().toString());
+                });
+                thread.start();
+            }else{
+                Thread thread = new Thread(
+                    () -> {
+                        runCom(hostString,user,passwordString,maxCommand +"-pmariadb " + comList.getEditor().getItem().toString());
+                });
+                thread.start();
+            }
         }else{
             Thread thread = new Thread(
                     () -> {
@@ -315,8 +336,13 @@ public class ui extends javax.swing.JPanel {
 	    	session.setPassword(password);
 	    	session.setConfig(config);
 	    	session.connect();
-	    	result.append("Running command..."+"\n");
-	    
+                if(command.contains("maxscale -v")){
+                    result.append("Checking maxscale version..."+"\n");
+                    versionChecked = true;
+                }else{
+                    result.append("Running command..."+"\n");
+                }
+                
 	    	Channel channel=session.openChannel("exec");
 	        ((ChannelExec)channel).setCommand(command);
 	        channel.setInputStream(null);
@@ -329,7 +355,11 @@ public class ui extends javax.swing.JPanel {
 	          while(in.available()>0){
 	            int i=in.read(tmp, 0, 1024);
 	            if(i<0)break;
-	            result.append(new String(tmp, 0, i));
+                    if(command.contains("maxscale -v")){
+                        maxVersion += new String(tmp, 0, i);
+                    }else{
+                        result.append(new String(tmp, 0, i));
+                    }
 	          }
 	          if(channel.isClosed()){
 	            //result.append("exit-status: "+channel.getExitStatus() + "\n");
@@ -345,7 +375,7 @@ public class ui extends javax.swing.JPanel {
 	        session.disconnect();
 	        //result.append("DONE");
 	    }catch(Exception e){
-	    	result.append(e.getMessage());
+	    	result.append(e.getMessage() + "\n");
 	    }
 
 	}
