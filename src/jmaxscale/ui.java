@@ -8,8 +8,10 @@ package jmaxscale;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import java.awt.Color;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -32,7 +34,7 @@ public class ui extends javax.swing.JPanel {
     private String command = " ";
     private String mxUser = "";
     private String mxPassword = "mariadb";
-    private String maxCommand = "maxadmin ";
+    private final String maxCommand = "maxadmin ";
     private String maxVersion = "";
     private boolean versionChecked =false;
 
@@ -177,7 +179,7 @@ public class ui extends javax.swing.JPanel {
                                         .addComponent(userLabel)
                                         .addGap(6, 6, 6)
                                         .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(passwordLabel)
@@ -367,14 +369,14 @@ public class ui extends javax.swing.JPanel {
 	          }
 	          try{
                       Thread.sleep(1000);
-                  }catch(Exception ee){
+                  }catch(InterruptedException ee){
                   
                   }
 	        }
 	        channel.disconnect();
 	        session.disconnect();
 	        //result.append("DONE");
-	    }catch(Exception e){
+	    }catch(JSchException | IOException e){
 	    	result.append(e.getMessage() + "\n");
 	    }
 
