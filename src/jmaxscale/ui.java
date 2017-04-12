@@ -64,6 +64,7 @@ public class ui extends javax.swing.JPanel {
         detailLabel = new javax.swing.JLabel();
         maxUser = new javax.swing.JTextField();
         maxPassword = new javax.swing.JTextField();
+        logs = new javax.swing.JButton();
 
         host.setToolTipText("Enter credentials for server running MaxScale.");
         host.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -149,6 +150,14 @@ public class ui extends javax.swing.JPanel {
             }
         });
 
+        logs.setText("Show Log");
+        logs.setToolTipText("Show MaxScale Log.");
+        logs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,12 +200,14 @@ public class ui extends javax.swing.JPanel {
                                         .addComponent(runButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(clearButton)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(configButton))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(configButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(logs))))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(detailLabel)))
-                        .addGap(0, 110, Short.MAX_VALUE)))
+                        .addGap(0, 23, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -222,9 +233,10 @@ public class ui extends javax.swing.JPanel {
                     .addComponent(clearButton)
                     .addComponent(configButton)
                     .addComponent(maxUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(maxPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                    .addComponent(maxPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logs))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -328,6 +340,14 @@ public class ui extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_maxPasswordFocusLost
 
+    private void logsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logsActionPerformed
+        Thread thread = new Thread(
+                () -> {
+                    runCom(hostString,user,passwordString,"tail -100 /var/log/maxscale/maxscale1.log");
+        });
+        thread.start();
+    }//GEN-LAST:event_logsActionPerformed
+
     private void runCom(String host, String user, String password, String command) {
         try{
 	    	
@@ -392,6 +412,7 @@ public class ui extends javax.swing.JPanel {
     private javax.swing.JLabel hostLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton logs;
     private javax.swing.JTextField maxPassword;
     private javax.swing.JTextField maxUser;
     private javax.swing.JTextField password;

@@ -60,8 +60,10 @@
                                       <Component id="runButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="clearButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="configButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="logs" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -70,7 +72,7 @@
                               <Component id="detailLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="110" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -102,9 +104,10 @@
                   <Component id="configButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="maxUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="maxPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="logs" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="440" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="452" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -271,6 +274,15 @@
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="maxPasswordFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="maxPasswordFocusLost"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="logs">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Show Log"/>
+        <Property name="toolTipText" type="java.lang.String" value="Show MaxScale Log."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logsActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
