@@ -242,16 +242,19 @@ public class ui extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hostFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hostFocusLost
+        //check version again if host changes.
+        versionChecked = false;
         
+        //validate if host is a valid IP address.
         IPAddressValidator isIP = new IPAddressValidator();
         if(isIP.validate(host.getText())){
             hostString = host.getText();
-            host.setBackground(Color.green);
+            host.setBackground(Color.green); //set input background to green.
         }else{
             if(!host.getText().isEmpty()){
-                host.setBackground(Color.red);
+                host.setBackground(Color.red); //set input backuground to red.
             }else{
-                host.setBackground(Color.white);
+                host.setBackground(Color.white); //set white if empty.
             }
         }
     }//GEN-LAST:event_hostFocusLost
@@ -264,6 +267,11 @@ public class ui extends javax.swing.JPanel {
     private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
         
         passwordString = password.getText();
+        
+    }//GEN-LAST:event_passwordFocusLost
+
+    private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
+        
         maxVersion = "";
         
         if(!versionChecked){
@@ -273,9 +281,6 @@ public class ui extends javax.swing.JPanel {
             });
             thread.start();
         }
-    }//GEN-LAST:event_passwordFocusLost
-
-    private void runButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runButtonActionPerformed
         
         int itemIndex = comList.getSelectedIndex();
         if(maxUser.getText().equals("username") && maxPassword.getText().equals("password") || maxUser.getText().isEmpty() && maxPassword.getText().isEmpty()){
@@ -358,7 +363,7 @@ public class ui extends javax.swing.JPanel {
 	    	session.setPassword(password);
 	    	session.setConfig(config);
 	    	session.connect();
-                if(command.contains("maxscale -v")){
+                if(command.contains("maxscale -v")&& !versionChecked){
                     result.append("Checking maxscale version..."+"\n");
                     versionChecked = true;
                 }else{
