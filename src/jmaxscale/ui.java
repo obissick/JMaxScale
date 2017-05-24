@@ -28,9 +28,9 @@ public class ui extends javax.swing.JPanel {
         
     }
     
-    private String hostString;
-    private String user;
-    private String passwordString;
+    private static String hostString;
+    private static String user;
+    private static String passwordString;
     private String command = " ";
     private String mxUser = "";
     private String mxPassword = "mariadb";
@@ -117,7 +117,7 @@ public class ui extends javax.swing.JPanel {
             }
         });
 
-        configButton.setText("Show Config");
+        configButton.setText("Config");
         configButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 configButtonActionPerformed(evt);
@@ -207,7 +207,7 @@ public class ui extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(detailLabel)))
-                        .addGap(0, 23, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -225,7 +225,7 @@ public class ui extends javax.swing.JPanel {
                     .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(runButton)
                     .addComponent(comLabel)
@@ -313,12 +313,15 @@ public class ui extends javax.swing.JPanel {
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
-        String cnfFile = "/etc/maxscale.cnf";
+        /*String cnfFile = "/etc/maxscale.cnf";
         Thread thread = new Thread(
                 () -> {
                     runCom(hostString,user,passwordString,"cat "+cnfFile);
         });
-        thread.start();
+        thread.start();*/
+        
+         EditConfig editWin = new EditConfig();
+        
     }//GEN-LAST:event_configButtonActionPerformed
 
     private void maxUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxUserFocusLost
@@ -353,6 +356,15 @@ public class ui extends javax.swing.JPanel {
         thread.start();
     }//GEN-LAST:event_logsActionPerformed
 
+    public static String getHost(){
+        return hostString;
+    }
+    public static String getUser(){
+        return user;
+    }
+    public static String getPass(){
+        return passwordString;
+    }
     private void runCom(String host, String user, String password, String command) {
         try{
 	    	

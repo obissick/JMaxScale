@@ -23,104 +23,117 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.html.HTMLEditorKit;
 
-public class EditConfig {
+public class EditConfig extends JFrame{
 
     public static void main(String args[]) {
+        
 
-  final String inputFilePath = "C:/Users/obissick/Desktop/Copy of 12 2015 audit row 1.xlsx";
+       TransferFile ssh = new TransferFile(); 
+       ssh.download("MaxScale.cnf", ui.getHost(), ui.getUser(), ui.getPass());
+       
+    final String inputFilePath = "MaxScale.cnf";
 
-  JFrame jFrame = new JFrame("Load ,Edit and Save file");
+    JFrame jFrame = new JFrame("Load ,Edit and Save file");
 
-  Container content = jFrame.getContentPane();
+    Container content = jFrame.getContentPane();
 
-  final JEditorPane edPane = new JEditorPane();
+    final JEditorPane edPane = new JEditorPane();
 
-  JScrollPane sPne = new JScrollPane(edPane);
+    JScrollPane sPne = new JScrollPane(edPane);
 
-  content.add(sPne, BorderLayout.CENTER);
+    content.add(sPne, BorderLayout.CENTER);
 
-  edPane.setEditorKit(new HTMLEditorKit());
+    edPane.setEditorKit(new HTMLEditorKit());
 
-  JPanel jPanel = new JPanel();
+    JPanel jPanel = new JPanel();
 
-  Action Load = new AbstractAction() {
+    Action Load = new AbstractAction() {
 
-@Override
+  @Override
 
-public void actionPerformed(ActionEvent event) {
+  public void actionPerformed(ActionEvent event) {
 
-    try {
+      try {
 
-  load(edPane, inputFilePath);
+    load(edPane, inputFilePath);
 
-    } catch (Exception e1) {
+      } catch (Exception e1) {
 
-  e1.printStackTrace();
+    e1.printStackTrace();
 
-    }
+      }
 
-}
+  }
 
-  };
+    };
 
-  Load.putValue(Action.NAME, "Load");
+    Load.putValue(Action.NAME, "Load");
 
-  JButton loadButton = new JButton(Load);
+    JButton loadButton = new JButton(Load);
 
-  jPanel.add(loadButton);
+    jPanel.add(loadButton);
 
-  Action absActionSave = new AbstractAction() {
+    Action absActionSave = new AbstractAction() {
 
-@Override
+  @Override
 
-public void actionPerformed(ActionEvent event) {
+  public void actionPerformed(ActionEvent event) {
 
-    try {
+      try {
 
-  save(edPane, inputFilePath);
+    save(edPane, inputFilePath);
 
-    } catch (Exception e1) {
+      } catch (Exception e1) {
 
-  e1.printStackTrace();
+    e1.printStackTrace();
 
-    }
+      }
 
-}
+  }
 
-  };
+    };
 
-  absActionSave.putValue(Action.NAME, "Save");
+    absActionSave.putValue(Action.NAME, "Save");
 
-  JButton jButton = new JButton(absActionSave);
+    JButton jButton = new JButton(absActionSave);
 
-  jPanel.add(jButton);
+    jPanel.add(jButton);
 
-  Action absActionClear = new AbstractAction() {
+    Action absActionClear = new AbstractAction() {
 
-@Override
+  @Override
 
-public void actionPerformed(ActionEvent event) {
+  public void actionPerformed(ActionEvent event) {
 
-    edPane.setText("");
+      edPane.setText("");
 
-}
+  }
 
-  };
+    };
 
-  absActionClear.putValue(Action.NAME, "Clear");
+    absActionClear.putValue(Action.NAME, "Clear");
 
-  JButton clearButton = new JButton(absActionClear);
+    JButton clearButton = new JButton(absActionClear);
 
-  jPanel.add(clearButton);
+    jPanel.add(clearButton);
 
-  content.add(jPanel, BorderLayout.SOUTH);
+    content.add(jPanel, BorderLayout.SOUTH);
 
-  jFrame.setSize(800, 600);
+    jFrame.setSize(800, 600);
 
-  jFrame.setVisible(true);
+    jFrame.setVisible(true);
+    
+           		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new EditConfig().setVisible(true);
+                                
+			}
+		});
     }
 
     public static void save(JTextComponent text, String inputFile) throws Exception {
