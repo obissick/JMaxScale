@@ -84,7 +84,7 @@ public class EditConfGUI extends JFrame{
         });
            frame.setSize(700, 500);
            frame.setVisible(true);   
-           
+           frame.setIconImage(new ImageIcon(getClass().getResource("/lib/icon.png")).getImage());
 }
 
     private void saveBtn(){
