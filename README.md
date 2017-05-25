@@ -2,7 +2,7 @@
 # JMaxScale
 UI for running MaxScale commands.
 
-![Alt text](/src/images/screenshot1.PNG?raw=true "Optional Title")
+![Alt text](/src/images/screenshot1.PNG?raw=true "JMaxScale UI")
 
 # Requirements
   - Java version >= 8
