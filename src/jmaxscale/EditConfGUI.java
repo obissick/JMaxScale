@@ -47,9 +47,9 @@ public class EditConfGUI extends JFrame{
              }
              textArea.setText(storeAllString);
       }
-        catch (Exception exception)
+        catch (FileNotFoundException exc)
          {
-         exception.printStackTrace();
+            ui.setResult(exc.toString());
          }
     }      
 
@@ -67,21 +67,13 @@ public class EditConfGUI extends JFrame{
          frame.getContentPane().add(rightPanel,BorderLayout.EAST);
          rightPanel.add(saveCloseBtn);
           rightPanel.add(closeButton);
-          closeButton.addActionListener(new ActionListener() {
-                  public void actionPerformed(ActionEvent e)
-                    {
-                        frame.dispose();
-
-                    }
-        });
-          saveCloseBtn.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                saveBtn();
-                frame.dispose();
-
-            }
-        });
+          closeButton.addActionListener((ActionEvent e) -> {
+              frame.dispose();
+         });
+          saveCloseBtn.addActionListener((ActionEvent e) -> {
+              saveBtn();
+              frame.dispose();
+         });
            frame.setSize(700, 500);
            frame.setVisible(true);   
            frame.setIconImage(new ImageIcon(getClass().getResource("/lib/icon.png")).getImage());
@@ -99,13 +91,13 @@ public class EditConfGUI extends JFrame{
             out.close();
             ssh.upload("maxscale.cnf", ui.getHost(), ui.getUser(), ui.getPass());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ui.setResult(e.toString());
         } catch (IOException e) {
-            e.printStackTrace();
+            ui.setResult(e.toString());
         }
   }
     public static void main(String[] arg)
     {
-        new EditConfGUI();
+        EditConfGUI editConfGUI = new EditConfGUI();
     }
 }

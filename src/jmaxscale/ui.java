@@ -365,6 +365,9 @@ public class ui extends javax.swing.JPanel {
     public static String getPass(){
         return passwordString;
     }
+    public static void setResult(String txt){
+        result.append(txt);
+    }
     private void runCom(String host, String user, String password, String command) {
         try{
 	    	
@@ -434,7 +437,7 @@ public class ui extends javax.swing.JPanel {
     private javax.swing.JTextField maxUser;
     private javax.swing.JTextField password;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JTextArea result;
+    private static javax.swing.JTextArea result;
     private javax.swing.JButton runButton;
     private javax.swing.JLabel userLabel;
     private javax.swing.JTextField userName;
