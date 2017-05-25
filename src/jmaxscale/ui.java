@@ -320,7 +320,7 @@ public class ui extends javax.swing.JPanel {
         });
         thread.start();*/
         
-         EditConfig editWin = new EditConfig();
+         EditConfGUI editWin = new EditConfGUI();
         
     }//GEN-LAST:event_configButtonActionPerformed
 
