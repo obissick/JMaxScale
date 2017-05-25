@@ -68,8 +68,8 @@ public class TransferFile {
             channelSftp = (ChannelSftp) channel;
             channelSftp.cd(SFTPWORKINGDIR);
             byte[] buffer = new byte[1024];
-            BufferedInputStream bis = new BufferedInputStream(channelSftp.get("MaxScale.cnf"));
-            File newFile = new File("MaxScale.cnf");
+            BufferedInputStream bis = new BufferedInputStream(channelSftp.get("maxscale.cnf"));
+            File newFile = new File("maxscale.cnf");
             OutputStream os = new FileOutputStream(newFile);
             BufferedOutputStream bos = new BufferedOutputStream(os);
             int readCount;
@@ -80,6 +80,7 @@ public class TransferFile {
             bis.close();
             bos.close();
         } catch (JSchException | SftpException | IOException ex) {
+            System.out.println(ex.toString());
         }
     }
 }

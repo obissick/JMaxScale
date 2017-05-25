@@ -23,11 +23,11 @@ public class EditConfGUI extends JFrame{
         fileRead();
         panels();         
     }
-
+    private TransferFile ssh = new TransferFile(); 
     private String storeAllString="";
     private JButton saveCloseBtn = new JButton("Save Changes and Close");
     private JButton closeButton = new JButton("Exit Without Saving");
-    private JFrame frame=new JFrame("Viewing All Program Details");
+    private JFrame frame=new JFrame("Edit MaxScale Config");
    // private JTextArea textArea = new JTextArea(storeAllString,0,70);
     private JTextArea textArea = new JTextArea();
 
@@ -37,10 +37,9 @@ public class EditConfGUI extends JFrame{
      }     
 
     private void fileRead(){
-        TransferFile ssh = new TransferFile(); 
-        ssh.download("MaxScale.cnf", ui.getHost(), ui.getUser(), ui.getPass());
+        ssh.download("maxscale.cnf", ui.getHost(), ui.getUser(), ui.getPass());
         try{    
-          FileReader read = new FileReader("MaxScale.cnf");
+          FileReader read = new FileReader("maxscale.cnf");
           Scanner scan = new Scanner(read);
              while(scan.hasNextLine()){
               String temp=scan.nextLine()+"\n";
@@ -83,10 +82,9 @@ public class EditConfGUI extends JFrame{
 
             }
         });
-           frame.setSize(1000, 700);
+           frame.setSize(700, 500);
            frame.setVisible(true);   
-           frame.setLocationRelativeTo(null);
-
+           
 }
 
     private void saveBtn(){
@@ -95,10 +93,11 @@ public class EditConfGUI extends JFrame{
 
 
         try {
-            file = new File("MaxScale.cnf");
+            file = new File("maxscale.cnf");
             out = new FileWriter(file);     
             out.write(textArea.getText());
             out.close();
+            ssh.upload("maxscale.cnf", ui.getHost(), ui.getUser(), ui.getPass());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -225,7 +225,7 @@ public class ui extends javax.swing.JPanel {
                     .addComponent(userName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(runButton)
                     .addComponent(comLabel)
@@ -321,7 +321,7 @@ public class ui extends javax.swing.JPanel {
         thread.start();*/
         
          EditConfGUI editWin = new EditConfGUI();
-        
+         editWin.setLocation(this.getLocation());
     }//GEN-LAST:event_configButtonActionPerformed
 
     private void maxUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxUserFocusLost
