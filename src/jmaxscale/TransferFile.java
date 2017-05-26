@@ -48,8 +48,8 @@ public class TransferFile {
             channelSftp.cd(SFTPWORKINGDIR);
             File f = new File(file);
             channelSftp.put(new FileInputStream(f), f.getName());
-            session.disconnect();
             channel.disconnect();
+            session.disconnect();    
         }catch(JSchException | SftpException | FileNotFoundException ex){
             
         }
@@ -81,8 +81,8 @@ public class TransferFile {
             }
             bis.close();
             bos.close();
-            session.disconnect();
             channel.disconnect();
+            session.disconnect(); 
         } catch (JSchException | SftpException | IOException ex) {
             System.out.println(ex.toString());
         }
