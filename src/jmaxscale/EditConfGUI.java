@@ -47,9 +47,9 @@ public class EditConfGUI extends JFrame{
              }
              textArea.setText(storeAllString);
       }
-        catch (FileNotFoundException exc)
+        catch (FileNotFoundException ex)
          {
-            ui.setResult(exc.toString());
+            ui.setResult(ex.getMessage()+ "\n");
          }
     }      
 
@@ -90,10 +90,10 @@ public class EditConfGUI extends JFrame{
             out.write(textArea.getText());
             out.close();
             ssh.upload("maxscale.cnf", ui.getHost(), ui.getUser(), ui.getPass());
-        } catch (FileNotFoundException e) {
-            ui.setResult(e.toString());
-        } catch (IOException e) {
-            ui.setResult(e.toString());
+        } catch (FileNotFoundException ex) {
+            ui.setResult(ex.getMessage()+ "\n");
+        } catch (IOException ex) {
+            ui.setResult(ex.getMessage()+ "\n");
         }
   }
     public static void main(String[] arg)

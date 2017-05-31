@@ -51,7 +51,7 @@ public class TransferFile {
             channel.disconnect();
             session.disconnect();    
         }catch(JSchException | SftpException | FileNotFoundException ex){
-            
+            ui.setResult(ex.getMessage()+ "\n");
         }
  
     }
@@ -76,7 +76,6 @@ public class TransferFile {
             BufferedOutputStream bos = new BufferedOutputStream(os);
             int readCount;
             while ((readCount = bis.read(buffer)) > 0) {
-                System.out.println("Writing: ");
                 bos.write(buffer, 0, readCount);
             }
             bis.close();
@@ -84,7 +83,7 @@ public class TransferFile {
             channel.disconnect();
             session.disconnect(); 
         } catch (JSchException | SftpException | IOException ex) {
-            System.out.println(ex.toString());
+            ui.setResult(ex.getMessage()+ "\n");
         }
     }
 }
