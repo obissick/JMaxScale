@@ -68,6 +68,7 @@ public class EditConfGUI extends JFrame{
          rightPanel.add(saveCloseBtn);
           rightPanel.add(closeButton);
           closeButton.addActionListener((ActionEvent e) -> {
+              new File("maxscale.cnf").delete();
               frame.dispose();
          });
           saveCloseBtn.addActionListener((ActionEvent e) -> {

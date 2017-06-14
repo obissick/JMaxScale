@@ -319,9 +319,15 @@ public class ui extends javax.swing.JPanel {
                     runCom(hostString,user,passwordString,"cat "+cnfFile);
         });
         thread.start();*/
-        
-         EditConfGUI editWin = new EditConfGUI();
-         editWin.setLocation(this.getLocation());
+         if(!host.getText().isEmpty()){
+            EditConfGUI editWin = new EditConfGUI();
+            //editWin.setLocation(this.getLocationOnScreen());
+            editWin.setLocationRelativeTo(this);
+         }
+         else{
+             
+         }
+         
     }//GEN-LAST:event_configButtonActionPerformed
 
     private void maxUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maxUserFocusLost
